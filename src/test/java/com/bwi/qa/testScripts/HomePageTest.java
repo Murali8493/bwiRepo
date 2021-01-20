@@ -33,6 +33,6 @@ public class HomePageTest extends TestBase
 	}
 	@Test(priority=2)
 	public void checkFindMYHotelBtn(){
-		Assert.assertTrue(homePage.verifyfindMYHotelBtn());
+		Assert.assertTrue(homePage.verifyFindMyHotelButton());
 	}
 }

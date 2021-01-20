@@ -10,7 +10,7 @@ public class HomePage extends TestBase
 {
 
 	@FindBy(id = "btn-modify-stay-update")
-	WebElement findMYHotelBtn;
+	WebElement findMyHotelBtn;
 	
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -20,7 +20,7 @@ public class HomePage extends TestBase
 		return driver.getTitle();
 	}
 	
-	public boolean verifyfindMYHotelBtn(){
-		return findMYHotelBtn.isDisplayed();
+	public boolean verifyFindMyHotelButton(){
+		return findMyHotelBtn.isDisplayed();
 	}
 }
