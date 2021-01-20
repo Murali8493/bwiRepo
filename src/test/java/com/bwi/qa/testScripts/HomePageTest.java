@@ -1,7 +1,6 @@
 package com.bwi.qa.testScripts;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

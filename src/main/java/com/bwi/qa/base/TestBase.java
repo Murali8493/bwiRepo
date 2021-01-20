@@ -15,17 +15,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-public class TestBase
-{
+public class TestBase {
 	public static WebDriver driver;
 	public static Properties prop;
 
-	
-	public TestBase(){
+	public TestBase() {
 		try {
 			prop = new Properties();
-			FileInputStream config = new FileInputStream(System.getProperty("user.dir")+ "\\src\\main\\java\\com\\bwi\\qa\\config\\config.properties");
+			FileInputStream config = new FileInputStream(
+					System.getProperty("user.dir") + "\\src\\main\\java\\com\\bwi\\qa\\config\\config.properties");
 			prop.load(config);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -33,15 +31,14 @@ public class TestBase
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public static void initialization()
-	{
+
+	public static void initialization() {
 		String browserName = prop.getProperty("browser");
-		
-		if(browserName.equals("chrome")){
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "\\src\\test\\resources\\drivers\\chromedriver.exe");	
-			driver = new ChromeDriver(); 
+
+		if (browserName.equals("chrome")) {
+			System.setProperty("webdriver.chrome.driver",
+					System.getProperty("user.dir") + "\\src\\test\\resources\\drivers\\chromedriver.exe");
+			driver = new ChromeDriver();
 		}
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
@@ -53,8 +50,7 @@ public class TestBase
 
 	////////////// ReUsable methods///////////////////////////
 
-	public boolean verifyElementExist(WebElement element)
-	{
+	public boolean verifyElementExist(WebElement element) {
 		boolean blnStatus = false;
 		WebDriverWait localWebDriverWait = new WebDriverWait(driver, 60);
 		try {
@@ -91,40 +87,46 @@ public class TestBase
 		}
 		return blnStatus;
 	}
-	
-	public String convertMonth(String selectedmonth)
-	{
-		String month = selectedmonth;
-		switch (month)
-		{
-		 case "January": return "-Jan-2021";
-		 case "February": return "-Feb-2021";
-		 case "March": return "-Mar-2021";
-		 case "April": return "-Apr-2021";
-		 case "May": return "-May-2021";
-		 case "June": return "-jun-2021";
-		 case "July": return "-Jul-2021";
-		 case "August": return "-Aug-2021";
-		 case "September": return "-Sep-2021";
-		 case "October": return "-Oct-2021";
-		 case "November": return "-Nov-2021";
-		 case "December": return "-Dec-2021";
 
-		 default: return "invalid month";
+	public String convertMonth(String selectedmonth) {
+		String month = selectedmonth;
+		switch (month) {
+		case "January":
+			return "-Jan-2021";
+		case "February":
+			return "-Feb-2021";
+		case "March":
+			return "-Mar-2021";
+		case "April":
+			return "-Apr-2021";
+		case "May":
+			return "-May-2021";
+		case "June":
+			return "-jun-2021";
+		case "July":
+			return "-Jul-2021";
+		case "August":
+			return "-Aug-2021";
+		case "September":
+			return "-Sep-2021";
+		case "October":
+			return "-Oct-2021";
+		case "November":
+			return "-Nov-2021";
+		case "December":
+			return "-Dec-2021";
+
+		default:
+			return "invalid month";
 		}
 	}
-	
-	public void pressPageDownKey()
-	{
-		try
-		{
+
+	public void pressPageDownKey() {
+		try {
 			Robot r = new Robot();
 			r.keyPress(KeyEvent.VK_PAGE_DOWN);
 			r.keyRelease(KeyEvent.VK_PAGE_DOWN);
-			
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}

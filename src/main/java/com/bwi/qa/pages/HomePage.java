@@ -12,8 +12,6 @@ public class HomePage extends TestBase
 	@FindBy(id = "btn-modify-stay-update")
 	WebElement findMYHotelBtn;
 	
-	
-	// Initializing the Page Objects:
 	public HomePage() {
 		PageFactory.initElements(driver, this);
 	}
