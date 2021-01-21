@@ -15,11 +15,18 @@ public class ExcelUtil {
 	public static XSSFSheet worksheet;
 	public static DataFormatter formatter = new DataFormatter();
 
+	/**
+	 * Use: This is an data provider used to read data from MS excel (for parameterisation)
+	 * @author Murali krishna Sara
+	 * @param  none
+	 * @return Object[][]
+	 */
 	@DataProvider(name = "dp")
 	public static Object[][] ReadVariant() throws IOException {
-		
+
 		FileInputStream fileInputStream = new FileInputStream(
-				"D:\\BWI_Assignment\\bestwestern\\src\\test\\resources\\testData\\data - Copy.xlsx"); 
+				"D:\\BWI_Assignment\\bwi_devtool\\src\\test\\resources\\testData\\data - Copy.xlsx"); 
+
 		workbook = new XSSFWorkbook(fileInputStream); // get my workbook
 		worksheet = workbook.getSheet("Bwi");// get my sheet from workbook
 		XSSFRow Row = worksheet.getRow(0);// get my Row which start from 0  
@@ -41,7 +48,7 @@ public class ExcelUtil {
 					else {
 						String value = formatter.formatCellValue(cell);
 						Data[i][j] = value; // This formatter get my all values as string i.e integer, float all type
-											// data value
+						// data value
 					}
 				}
 			}

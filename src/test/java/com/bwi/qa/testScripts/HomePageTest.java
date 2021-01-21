@@ -16,14 +16,20 @@ public class HomePageTest extends TestBase
 	{
 		super();
 	}
-	
+
 	@BeforeTest
 	public void setUp()
 	{
 		initialization();
 		homePage=new HomePage();
 	}
-	
+
+	/**
+	 * Use: To test is to check the title of the page
+	 * @author Murali krishna Sara
+	 * @param  none
+	 * @return none
+	 */
 	@Test(priority=1)
 	public void verifyHomePageTitle()
 	{
@@ -31,6 +37,13 @@ public class HomePageTest extends TestBase
 		System.out.println("Title is:::::"+ homePageTitle);
 		Assert.assertEquals(homePageTitle, "Book Direct at Best Western Hotels & Resorts");
 	}
+
+	/**
+	 * Use: To test is to verify FindMyHotel Button
+	 * @author Murali krishna Sara
+	 * @param  none
+	 * @return none
+	 */
 	@Test(priority=2)
 	public void checkFindMYHotelBtn(){
 		Assert.assertTrue(homePage.verifyFindMyHotelButton());

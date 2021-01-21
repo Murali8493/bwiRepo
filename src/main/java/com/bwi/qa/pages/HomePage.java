@@ -11,15 +11,33 @@ public class HomePage extends TestBase
 
 	@FindBy(id = "btn-modify-stay-update")
 	WebElement findMyHotelBtn;
-	
+
+	/**
+	 * Use: This is a constructor
+	 * @author Murali krishna Sara
+	 * @param  none
+	 * @return none
+	 */
 	public HomePage() {
 		PageFactory.initElements(driver, this);
 	}
-	
+
+	/**
+	 * Use: To verify HomePage Title
+	 * @author Murali krishna Sara
+	 * @param  none
+	 * @return String
+	 */
 	public String verifyHomePageTitle(){
 		return driver.getTitle();
 	}
-	
+
+	/**
+	 * Use: To verify the availability of FindMyHotel Button
+	 * @author Murali krishna Sara
+	 * @param  none
+	 * @return boolean
+	 */
 	public boolean verifyFindMyHotelButton(){
 		return findMyHotelBtn.isDisplayed();
 	}
