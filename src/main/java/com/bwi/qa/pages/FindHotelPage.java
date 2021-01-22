@@ -189,7 +189,7 @@ public class FindHotelPage extends TestBase {
 	 */
 	public int checkAvailabilityOfHotelCard() {
 		syncWait(2000);
-		handelDevTool();
+		getHotelSearchResponse();
 		int count =hotelCardsList.size();
 		System.out.println("================================HOTEL DETAILS=========================================");
 		System.out.println("No of hotel cards available are:::" + count);

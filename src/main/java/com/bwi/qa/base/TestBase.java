@@ -5,28 +5,25 @@ import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.devtools.Console;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.Log;
-import org.openqa.selenium.devtools.network.Network;
-import org.openqa.selenium.devtools.network.model.InterceptionStage;
-import org.openqa.selenium.devtools.network.model.RequestPattern;
-import org.openqa.selenium.devtools.network.model.ResourceType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
-import com.google.common.collect.ImmutableList;
 
 public class TestBase {
 	public static WebDriver driver;
@@ -80,19 +77,44 @@ public class TestBase {
 	 * @return none
 	 */
 
-	public static void handelDevTool()
+	public static void getHotelSearchResponse()
 	{
-		DevTools devTools=((ChromiumDriver) driver).getDevTools();
+	/*	DevTools devTools=((ChromiumDriver) driver).getDevTools();
 		devTools.createSession();
 		devTools.send(Log.enable());
 		devTools.addListener(Log.entryAdded(), entry ->System.out.println(entry.asSeleniumLogEntry()));	
 
 		System.out.println("Dev Tool dump:::");
 		devTools.addListener(Console.messageAdded(), consoleMessageFromDevTools ->
-		System.out.println(consoleMessageFromDevTools.getText()));
+		System.out.println(consoleMessageFromDevTools.getText()));*/
+		
+		//Working on this area
+	 /*	Values will change in this URL based on search criteria. We need to send these perameters to the endpoint URL.
+
+		1.	checkinDate
+		2.	checkoutDate
+		3.	attitude   (various based on location)
+		4.	longitude (various based on location)*/
+
+		//base URI
+		RestAssured.baseURI="https://www.bestwestern.com/bin/bestwestern/proxy?gwServiceURL=HOTEL_SEARCH&distance=50&depth=2&checkinDate=2021-01-22&checkoutDate=2021-01-23&latitude=41.8781136&longitude=-87.6297982&numberOfRooms=1&occupant=numAdults:1,numChild:0&chain=BW&chain=UR&chain=PB&chain=XW";
+		//Request
+		RequestSpecification httpRequest= RestAssured.given();
+		//=============== Get method ========================================
+		//Response
+		Response response= httpRequest.request(Method.GET);
+		httpRequest.header("Content-Type", "application/json;charset=utf-8");
+		//See Response body
+		System.out.println("==========================:: Response body ::===========================");
+		String responseBody= response.getBody().asString();
+		System.out.println("Response::"+ responseBody);
+		//Get values from Response
+		System.out.println("==========================:: Response code::===========================");
+		int statusCode= response.getStatusCode();
+		System.out.println("Response::"+ statusCode);
 
 		//working on this area
-		devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+	/*	devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
 
 		//add listener to intercept request and continue
 		devTools.addListener(Network.requestIntercepted(),
@@ -106,7 +128,7 @@ public class TestBase {
 
 		//set request interception only for css requests
 		RequestPattern requestPattern = new RequestPattern("*.css", ResourceType.Stylesheet, InterceptionStage.HeadersReceived);
-		devTools.send(Network.setRequestInterception(ImmutableList.of(requestPattern))); 
+		devTools.send(Network.setRequestInterception(ImmutableList.of(requestPattern))); */
 
 	}
 

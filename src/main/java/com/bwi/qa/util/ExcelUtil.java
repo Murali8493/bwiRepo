@@ -25,7 +25,7 @@ public class ExcelUtil {
 	public static Object[][] ReadVariant() throws IOException {
 
 		FileInputStream fileInputStream = new FileInputStream(
-				"D:\\BWI_Assignment\\bwi_devtool\\src\\test\\resources\\testData\\data - Copy.xlsx"); 
+				System.getProperty("user.dir")+"\\src\\test\\resources\\testData\\data.xlsx"); 
 
 		workbook = new XSSFWorkbook(fileInputStream); // get my workbook
 		worksheet = workbook.getSheet("Bwi");// get my sheet from workbook
